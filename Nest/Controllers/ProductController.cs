@@ -7,7 +7,7 @@ namespace Nest.Controllers
 {
     public class ProductController : Controller
     {
-        AppDbContext _context;
+        private readonly AppDbContext _context;
 
         public ProductController(AppDbContext context)
         {
@@ -17,12 +17,16 @@ namespace Nest.Controllers
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products.Include(m => m.Category)
-                .Include(m => m.Vendor).Include(m => m.Images).Take(20)
+                .Include(m => m.Vendor).Include(m => m.Images)
+                .OrderByDescending(m => m.Id).Take(20)
                 .ToListAsync();
+
+            var categories = await _context.Categories.Include(m => m.Products).ToListAsync();
 
             ProductVM prodcutVM = new ProductVM()
             {
                 Products = products,
+                Categories = categories
             };
 
             return View(prodcutVM);
