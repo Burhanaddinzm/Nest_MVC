@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nest.Data.Contexts;
 
@@ -11,9 +12,10 @@ using Nest.Data.Contexts;
 namespace Nest.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240306184753_Added_Vendor_Logo")]
+    partial class Added_Vendor_Logo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,9 +92,6 @@ namespace Nest.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("IsHover")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsMain")
                         .HasColumnType("bit");
 
@@ -167,7 +166,7 @@ namespace Nest.Data.Migrations
             modelBuilder.Entity("Nest.Models.ProductImage", b =>
                 {
                     b.HasOne("Nest.Models.Product", "Product")
-                        .WithMany("Images")
+                        .WithMany("ProductImages")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -182,7 +181,7 @@ namespace Nest.Data.Migrations
 
             modelBuilder.Entity("Nest.Models.Product", b =>
                 {
-                    b.Navigation("Images");
+                    b.Navigation("ProductImages");
                 });
 
             modelBuilder.Entity("Nest.Models.Vendor", b =>

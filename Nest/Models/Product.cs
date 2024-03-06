@@ -12,6 +12,6 @@
         public int CategoryId { get; set; }
         public Vendor Vendor { get; set; } = null!;
         public Category Category { get; set; } = null!;
-        public List<ProductImage> ProductImages { get; set; } = null!;
+        public List<ProductImage> Images { get; set; } = null!;
     }
 }

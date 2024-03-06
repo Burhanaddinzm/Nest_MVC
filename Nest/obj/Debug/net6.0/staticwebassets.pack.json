@@ -1601,6 +1601,14 @@
       "PackagePath": "staticwebassets\\client\\assets\\imgs\\page\\page-404.png"
     },
     {
+      "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\imgs\\products\\product-2-1.jpg",
+      "PackagePath": "staticwebassets\\client\\assets\\imgs\\products\\product-2-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\imgs\\products\\product-2-2.jpg",
+      "PackagePath": "staticwebassets\\client\\assets\\imgs\\products\\product-2-2.jpg"
+    },
+    {
       "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\imgs\\shop\\cat-1.png",
       "PackagePath": "staticwebassets\\client\\assets\\imgs\\shop\\cat-1.png"
     },
