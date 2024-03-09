@@ -7421,6 +7421,10 @@
       "PackagePath": "staticwebassets\\admin\\vendor\\jquery\\jquery.slim.min.map"
     },
     {
+      "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\categoryIcons\\category-8.svg",
+      "PackagePath": "staticwebassets\\client\\assets\\categoryIcons\\category-8.svg"
+    },
+    {
       "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\css\\main.css",
       "PackagePath": "staticwebassets\\client\\assets\\css\\main.css"
     },

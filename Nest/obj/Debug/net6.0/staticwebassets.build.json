@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VevMJiVItisIBE+PCV3uZxo1mpHbThXfOEnhIXpGmhk=",
+  "Hash": "HjvslESZG4xmDSSvAG4UATgp2M2tOajYdbSqLmjpMeM=",
   "Source": "Nest",
   "BasePath": "_content/Nest",
   "Mode": "Default",
@@ -35260,6 +35260,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\vendor\\jquery-easing\\jquery.easing.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\categoryIcons\\category-8.svg",
+      "SourceId": "Nest",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\",
+      "BasePath": "_content/Nest",
+      "RelativePath": "client/assets/categoryIcons/category-8.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\client\\assets\\categoryIcons\\category-8.svg"
     },
     {
       "Identity": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\css\\main.css",
