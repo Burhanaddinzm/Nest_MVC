@@ -7421,8 +7421,20 @@
       "PackagePath": "staticwebassets\\admin\\vendor\\jquery\\jquery.slim.min.map"
     },
     {
+      "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\categoryIcons\\af7d8441-4334-4f8f-a633-dc392b93ad6a_pngegg.png",
+      "PackagePath": "staticwebassets\\client\\assets\\categoryIcons\\af7d8441-4334-4f8f-a633-dc392b93ad6a_pngegg.png"
+    },
+    {
+      "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\categoryIcons\\b19bc40e-26a7-419d-a6c1-e14eb500a75e_2131231.jpg",
+      "PackagePath": "staticwebassets\\client\\assets\\categoryIcons\\b19bc40e-26a7-419d-a6c1-e14eb500a75e_2131231.jpg"
+    },
+    {
       "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\categoryIcons\\category-8.svg",
       "PackagePath": "staticwebassets\\client\\assets\\categoryIcons\\category-8.svg"
+    },
+    {
+      "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\categoryIcons\\cc2fb6f2-dae4-480c-92e5-c360e6a95343_2131231.jpg",
+      "PackagePath": "staticwebassets\\client\\assets\\categoryIcons\\cc2fb6f2-dae4-480c-92e5-c360e6a95343_2131231.jpg"
     },
     {
       "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\css\\main.css",

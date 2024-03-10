@@ -24,6 +24,7 @@
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 403px;">Product Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 199px;">Product Description</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 101px;">Category Icon</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 101px;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +39,11 @@
                                                     <td>@product.Name</td>
                                                     <td>@product.Description</td>
                                                     <td style="display:flex; align-items:center; justify-content:center;">
-                                                        <img style="height:120px; object-fit:cover;" src="~/client/assets/categoryIcons/@category.Icon" />
+                                                        <img style="height:145px; object-fit:cover;" src="~/client/assets/categoryIcons/@category.Icon" />
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-primary" asp-route-id="@category.Id" asp-controller="Category" asp-action="Edit">Edit</a>
+                                                        <a class="btn btn-danger mt-2" asp-route-id="@category.Id" asp-controller="Category" asp-action="Delete">Delete</a>
                                                     </td>
                                                 </tr>
                                             }
@@ -50,7 +55,11 @@
                                                 <td>Products not found!</td>
                                                 <td>Products not found!</td>
                                                 <td style="display:flex; align-items:center; justify-content:center;">
-                                                    <img style="height:120px; object-fit:cover;" src="~/client/assets/categoryIcons/@category.Icon" />
+                                                    <img style="height:145px; object-fit:cover;" src="~/client/assets/categoryIcons/@category.Icon" />
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-primary" asp-route-id="@category.Id" asp-controller="Category" asp-action="Edit">Edit</a>
+                                                    <a class="btn btn-danger mt-2" asp-route-id="@category.Id" asp-controller="Category" asp-action="Delete">Delete</a>
                                                 </td>
                                             </tr>
                                         }

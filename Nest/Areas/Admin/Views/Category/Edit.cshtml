@@ -3,7 +3,8 @@
 }
 @model Category
 
-<form asp-controller="Category" asp-action="Create" method="post" enctype="multipart/form-data">
+<form asp-controller="Category" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input asp-for="Id" style="display:none" />
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Name</label>
         <input type="text" asp-for="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -15,6 +16,6 @@
         <span asp-validation-for="File"></span>
     </div>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Update</button>
     <a asp-controller="Category" asp-action="Index" class="btn btn-secondary mx-2">Back to list</a>
 </form>

@@ -60,5 +60,81 @@ namespace Nest.Areas.Admin.Controllers
 
             return View();
         }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || id == 0) { RedirectToAction("Index"); }
+
+            var category = _context.Categories.Find(id);
+
+            if (category == null) { RedirectToAction("Index"); }
+
+            return View(category);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int? id, Category category)
+        {
+            if (category.File == null)
+            {
+                category.Icon = _context.Categories.AsNoTracking().FirstOrDefault(m => m.Id == id).Icon;
+                await Console.Out.WriteLineAsync(category.Icon);
+                _context.Categories.Update(category);
+                await _context.SaveChangesAsync();
+
+                return View();
+            }
+
+
+            if (!category.File.ContentType.Contains("image"))
+            {
+                ModelState.AddModelError("", "Invalid file type!");
+                return View(category);
+            }
+            if (category.File.Length / 1024 / 1024 > 1)
+            {
+                ModelState.AddModelError("", "File size too big!");
+                return View(category);
+            }
+
+            var uniqueFileName = Guid.NewGuid().ToString() + "_" + category.File.FileName;
+
+            category.Icon = uniqueFileName;
+
+            string path = Path.Combine(_env.WebRootPath, "client", "assets", "categoryIcons", uniqueFileName);
+
+            FileStream fs = new FileStream(path, FileMode.Create);
+
+            await category.File.CopyToAsync(fs);
+
+            _context.Categories.Update(category);
+            await _context.SaveChangesAsync();
+
+            return View();
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || id == 0) { RedirectToAction("Index"); }
+
+            var category = _context.Categories.Find(id);
+
+            if (category == null) { RedirectToAction("Index"); }
+
+            return View(category);
+        }
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeletePOST(int? id)
+        {
+            if (id == null || id == 0) { RedirectToAction("Index"); }
+
+            var category = _context.Categories.Find(id);
+
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

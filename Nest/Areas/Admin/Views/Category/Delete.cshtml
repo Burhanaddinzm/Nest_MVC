@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Category";
+}
+@model Category
+
+<form asp-controller="Category" asp-action="Delete" method="post" enctype="multipart/form-data">
+    <input asp-for="Id" style="display:none" />
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name</label>
+        <input disabled type="text" asp-for="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Icon</label>
+        <input disabled asp-for="File" class="form-control" id="exampleInputPassword1">
+        <span asp-validation-for="File"></span>
+    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <button type="submit" class="btn btn-primary">Delete</button>
+</form>
