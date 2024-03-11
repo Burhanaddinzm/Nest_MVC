@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nest.Data.Contexts;
+using Nest.Extensions;
 using Nest.Models;
+using IO = System.IO;
 
 namespace Nest.Areas.Admin.Controllers
 {
@@ -30,30 +32,24 @@ namespace Nest.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Category category)
         {
-            if (!category.File.ContentType.Contains("image"))
+            if (!category.File.CheckFileType("image"))
             {
                 ModelState.AddModelError("", "Invalid file type!");
                 return View(category);
             }
-            if (category.File.Length / 1024 / 1024 > 1)
+            if (!category.File.CheckFileSize(2))
             {
                 ModelState.AddModelError("", "File size too big!");
                 return View(category);
             }
 
-            var uniqueFileName = Guid.NewGuid().ToString() + "_" + category.File.FileName;
+            string uniqueFileName = await category.File.SaveFileAsync(_env.WebRootPath, "client", "assets", "categoryIcons");
 
             Category newCategory = new Category
             {
                 Name = category.Name,
                 Icon = uniqueFileName
             };
-
-            string path = Path.Combine(_env.WebRootPath, "client", "assets", "categoryIcons", uniqueFileName);
-
-            FileStream fs = new FileStream(path, FileMode.Create);
-
-            await category.File.CopyToAsync(fs);
 
             await _context.Categories.AddAsync(newCategory);
             await _context.SaveChangesAsync();
@@ -63,78 +59,107 @@ namespace Nest.Areas.Admin.Controllers
 
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || id == 0) { RedirectToAction("Index"); }
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
 
-            var category = _context.Categories.Find(id);
+            Category? category = await _context.Categories.AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
 
-            if (category == null) { RedirectToAction("Index"); }
+            if (category == null)
+            {
+                return NotFound();
+            }
 
             return View(category);
         }
         [HttpPost]
         public async Task<IActionResult> Edit(int? id, Category category)
         {
-            if (category.File == null)
+            if (id != category.Id) return BadRequest();
+
+            Category? existingCategory = await _context.Categories.AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
+
+            if (existingCategory == null) return NotFound();
+
+            if (category.File != null)
             {
-                category.Icon = _context.Categories.AsNoTracking().FirstOrDefault(m => m.Id == id).Icon;
-                await Console.Out.WriteLineAsync(category.Icon);
+                if (!category.File.CheckFileType("image"))
+                {
+                    ModelState.AddModelError("", "Invalid file type!");
+                    return View(category);
+                }
+                if (!category.File.CheckFileSize(2))
+                {
+                    ModelState.AddModelError("", "File size too big!");
+                    return View(category);
+                }
+
+                var path = Path.Combine(_env.WebRootPath, "client", "assets", "categoryIcons", existingCategory.Icon);
+
+                if (IO.File.Exists(path))
+                {
+                    IO.File.Delete(path);
+                }
+
+                var uniqueFileName = await category.File.SaveFileAsync(_env.WebRootPath, "client", "assets", "categoryIcons");
+
+                existingCategory.Icon = uniqueFileName;
+                existingCategory.Name = category.Name;
+                _context.Update(existingCategory);
+            }
+            else
+            {
+                category.Icon = existingCategory.Icon;
                 _context.Categories.Update(category);
-                await _context.SaveChangesAsync();
-
-                return View();
             }
 
-
-            if (!category.File.ContentType.Contains("image"))
+            if (category.Name == null)
             {
-                ModelState.AddModelError("", "Invalid file type!");
-                return View(category);
-            }
-            if (category.File.Length / 1024 / 1024 > 1)
-            {
-                ModelState.AddModelError("", "File size too big!");
-                return View(category);
+                return RedirectToAction("Edit", id);
             }
 
-            var uniqueFileName = Guid.NewGuid().ToString() + "_" + category.File.FileName;
-
-            category.Icon = uniqueFileName;
-
-            string path = Path.Combine(_env.WebRootPath, "client", "assets", "categoryIcons", uniqueFileName);
-
-            FileStream fs = new FileStream(path, FileMode.Create);
-
-            await category.File.CopyToAsync(fs);
-
-            _context.Categories.Update(category);
             await _context.SaveChangesAsync();
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || id == 0) { RedirectToAction("Index"); }
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
 
-            var category = _context.Categories.Find(id);
+            Category? category = await _context.Categories.AsNoTracking().FirstOrDefaultAsync(m => m.Id == id);
 
-            if (category == null) { RedirectToAction("Index"); }
+            if (category == null)
+            {
+                return NotFound();
+            }
 
             return View(category);
         }
+
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeletePOST(int? id)
         {
-            if (id == null || id == 0) { RedirectToAction("Index"); }
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
 
-            var category = _context.Categories.Find(id);
+            Category? category = _context.Categories.Find(id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
 
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
         }
-
-
     }
 }
