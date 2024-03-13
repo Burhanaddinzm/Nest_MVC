@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nest.Data.Contexts;
+using Nest.Models;
 using Nest.ViewModels;
 
 namespace Nest.Controllers
@@ -26,6 +27,28 @@ namespace Nest.Controllers
             ProductVM prodcutVM = new ProductVM()
             {
                 Products = products,
+                Categories = categories
+            };
+
+            return View(prodcutVM);
+        }
+
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null) NotFound();
+
+            var product = await _context.Products.Include(m => m.Category)
+               .Include(m => m.Vendor).Include(m => m.Images)
+               .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (product == null) NotFound();
+
+            var categories = await _context.Categories.Include(m => m.Products)
+                .ToListAsync();
+
+            ProductVM prodcutVM = new ProductVM()
+            {
+                Product = product,
                 Categories = categories
             };
 

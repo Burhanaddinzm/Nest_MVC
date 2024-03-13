@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Nest.Data.Contexts;
 using Nest.Extensions;
 using Nest.Models;
-using IO = System.IO;
 
 namespace Nest.Areas.Admin.Controllers
 {
@@ -95,12 +94,7 @@ namespace Nest.Areas.Admin.Controllers
                     return View(category);
                 }
 
-                var path = Path.Combine(_env.WebRootPath, "client", "assets", "categoryIcons", existingCategory.Icon);
-
-                if (IO.File.Exists(path))
-                {
-                    IO.File.Delete(path);
-                }
+                category.File.DeleteFile(_env.WebRootPath, "client", "assets", "categoryIcons", existingCategory.Icon);
 
                 var uniqueFileName = await category.File.SaveFileAsync(_env.WebRootPath, "client", "assets", "categoryIcons");
 
@@ -140,7 +134,7 @@ namespace Nest.Areas.Admin.Controllers
 
             return View(category);
         }
-
+        // Hard Delete
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeletePOST(int? id)
         {
@@ -155,6 +149,8 @@ namespace Nest.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
+            category.File.DeleteFile(_env.WebRootPath, "client", "assets", "categoryIcons", category.Icon);
 
             _context.Categories.Remove(category);
             await _context.SaveChangesAsync();

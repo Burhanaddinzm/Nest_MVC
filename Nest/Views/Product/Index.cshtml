@@ -93,7 +93,7 @@
                             <div class="product-cart-wrap mb-30">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="shop-product-right.html">
+                                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">
                                             <img class="default-img" src="~/client/assets/imgs/products/@product.Images.FirstOrDefault(m=> m.IsMain).Url" alt="" />
                                             <img class="hover-img" src="~/client/assets/imgs/products/@product.Images.FirstOrDefault(m=> m.IsHover).Url" alt="" />
                                         </a>
@@ -109,9 +109,9 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">@product.Category.Name</a>
+                                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">@product.Category.Name</a>
                                     </div>
-                                    <h2><a href="shop-product-right.html">@product.Name</a></h2>
+                                    <h2><a asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">@product.Name</a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width:@(product.Rating*20)%"></div>
@@ -125,12 +125,12 @@
                                         <div class="product-price">
                                             @if (product.DiscountPrice > 0)
                                             {
-                                                <span>@product.DiscountPrice $</span>
-                                                <span class="old-price">@product.SellPrice $</span>
+                                                <span>@product.DiscountPrice$</span>
+                                                <span class="old-price">@product.SellPrice$</span>
                                             }
                                             else
                                             {
-                                                <span>@product.SellPrice $</span>
+                                                <span>@product.SellPrice$</span>
                                             }
                                         </div>
                                         <div class="add-cart">
@@ -329,7 +329,7 @@
                         @foreach (var category in Model.Categories)
                         {
                             <li>
-                                <a href="shop-grid-right.html"> <img src="~/client/assets/imgs/theme/icons/@category.Icon" alt="" />@category.Name</a><span class="count">@category.Products.Count</span>
+                                <a href="shop-grid-right.html"> <img src="~/client/assets/categoryIcons/@category.Icon" alt="" />@category.Name</a><span class="count">@category.Products.Count</span>
                             </li>
                         }
                     </ul>

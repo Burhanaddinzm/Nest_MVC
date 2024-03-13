@@ -1,4 +1,6 @@
-﻿namespace Nest.Extensions
+﻿using IO = System.IO;
+
+namespace Nest.Extensions
 {
     public static class FileExtension
     {
@@ -32,6 +34,16 @@
                 return false;
             }
             return true;
+        }
+
+        public static void DeleteFile(this IFormFile file, string root, string client, string assets, string folderName, string fileName)
+        {
+            string path = Path.Combine(root, client, assets, folderName, fileName);
+
+            if (IO.File.Exists(path))
+            {
+                IO.File.Delete(path);
+            }
         }
     }
 }
