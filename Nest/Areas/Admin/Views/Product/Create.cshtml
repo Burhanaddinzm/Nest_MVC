@@ -5,35 +5,59 @@
 
 <form asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Name</label>
-        <input type="text" asp-for="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" asp-for="Name" class="form-control" id="name" aria-describedby="emailHelp">
         <span asp-validation-for="Name"></span>
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Description</label>
-        <input asp-for="Description" class="form-control" id="exampleInputPassword1">
+        <label for="desc" class="form-label">Description</label>
+        <input asp-for="Description" class="form-control" id="desc">
         <span asp-validation-for="Description"></span>
-    </div>  
+    </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Sell Price</label>
-        <input asp-for="SellPrice" class="form-control" id="exampleInputPassword1">
+        <label for="sprice" class="form-label">Sell Price</label>
+        <input asp-for="SellPrice" class="form-control" id="sprice">
         <span asp-validation-for="SellPrice"></span>
-    </div>    
+    </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Discount Price</label>
-        <input asp-for="DiscountPrice" class="form-control" id="exampleInputPassword1">
+        <label for="dprice" class="form-label">Discount Price</label>
+        <input asp-for="DiscountPrice" class="form-control" id="dprice">
         <span asp-validation-for="DiscountPrice"></span>
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Rating</label>
-        <input asp-for="Rating" class="form-control" id="exampleInputPassword1">
+        <label for="rating" class="form-label">Rating</label>
+        <input asp-for="Rating" class="form-control" id="rating">
         <span asp-validation-for="Rating"></span>
-    </div>   
+    </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Files</label>
-        <input asp-for="Files" class="form-control" id="exampleInputPassword1">
+        <label for="ismain" class="form-label">Is Main</label>
+        <input asp-for="MainFile" class="form-control" id="ismain">
+        <span asp-validation-for="MainFile"></span>
+    </div>
+    <div class="mb-3">
+        <label for="ishover" class="form-label">Is Hover</label>
+        <input asp-for="HoverFile" class="form-control" id="ishover">
+        <span asp-validation-for="HoverFile"></span>
+    </div>
+    <div class="mb-3">
+        <label for="files" class="form-label">Additional Files</label>
+        <input asp-for="Files" class="form-control" id="files">
         <span asp-validation-for="Files"></span>
-    </div>  
+    </div>
+    <div class="mb-3">
+        <label for="cat" class="form-label">Category</label>
+        <select id="cat" class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories,nameof(Category.Id),nameof(Category.Name)))">
+            <option selected>Select category</option>
+        </select>
+        <span asp-validation-for="CategoryId"></span>
+    </div>
+    <div class="mb-3">
+        <label for="vendor" class="form-label">Vendor</label>
+        <select id="vendor" class="form-control" asp-for="VendorId" asp-items="@(new SelectList(ViewBag.Vendor,nameof(Category.Id),nameof(Category.Name)))">
+            <option selected>Select vendor</option>
+        </select>
+        <span asp-validation-for="VendorId"></span>
+    </div>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <button type="submit" class="btn btn-primary">Submit</button>
     <a asp-controller="Product" asp-action="Index" class="btn btn-secondary mx-2">Back to list</a>
