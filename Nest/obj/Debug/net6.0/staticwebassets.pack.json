@@ -7421,6 +7421,10 @@
       "PackagePath": "staticwebassets\\admin\\vendor\\jquery\\jquery.slim.min.map"
     },
     {
+      "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\categoryIcons\\6106d2f5-6b8e-4c5b-b1b2-a3f712726090_ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png",
+      "PackagePath": "staticwebassets\\client\\assets\\categoryIcons\\6106d2f5-6b8e-4c5b-b1b2-a3f712726090_ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png"
+    },
+    {
       "Id": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\categoryIcons\\ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png",
       "PackagePath": "staticwebassets\\client\\assets\\categoryIcons\\ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png"
     },

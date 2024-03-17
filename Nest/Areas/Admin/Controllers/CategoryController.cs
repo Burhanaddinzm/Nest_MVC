@@ -4,7 +4,7 @@ using Nest.Data.Contexts;
 using Nest.Extensions;
 using Nest.Models;
 
-namespace Nest.Areas.Admin.Controllers
+namespace Nest.Area.Admin.Controllers
 {
     [Area("Admin")]
     public class CategoryController : Controller

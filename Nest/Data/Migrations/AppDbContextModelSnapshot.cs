@@ -110,6 +110,49 @@ namespace Nest.Data.Migrations
                     b.ToTable("ProductImages");
                 });
 
+            modelBuilder.Entity("Nest.Models.ProductSize", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SizeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SizeId");
+
+                    b.ToTable("ProductSize");
+                });
+
+            modelBuilder.Entity("Nest.Models.Size", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sizes");
+                });
+
             modelBuilder.Entity("Nest.Models.Vendor", b =>
                 {
                     b.Property<int>("Id")
@@ -175,6 +218,25 @@ namespace Nest.Data.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Nest.Models.ProductSize", b =>
+                {
+                    b.HasOne("Nest.Models.Product", "Product")
+                        .WithMany("ProductSizes")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Nest.Models.Size", "Size")
+                        .WithMany("ProductSizes")
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Size");
+                });
+
             modelBuilder.Entity("Nest.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -183,6 +245,13 @@ namespace Nest.Data.Migrations
             modelBuilder.Entity("Nest.Models.Product", b =>
                 {
                     b.Navigation("Images");
+
+                    b.Navigation("ProductSizes");
+                });
+
+            modelBuilder.Entity("Nest.Models.Size", b =>
+                {
+                    b.Navigation("ProductSizes");
                 });
 
             modelBuilder.Entity("Nest.Models.Vendor", b =>

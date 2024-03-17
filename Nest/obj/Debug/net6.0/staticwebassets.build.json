@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IHBJWV3stj3FRaqgTG4YAqfUh/UAkvY3Nj5Z9JRRvu8=",
+  "Hash": "DD9wgmfPj3zWgTSswK/3X3GE0Bm6nFpQN+Zu+6xyhvY=",
   "Source": "Nest",
   "BasePath": "_content/Nest",
   "Mode": "Default",
@@ -35260,6 +35260,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\vendor\\jquery-easing\\jquery.easing.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\categoryIcons\\6106d2f5-6b8e-4c5b-b1b2-a3f712726090_ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png",
+      "SourceId": "Nest",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\",
+      "BasePath": "_content/Nest",
+      "RelativePath": "client/assets/categoryIcons/6106d2f5-6b8e-4c5b-b1b2-a3f712726090_ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\client\\assets\\categoryIcons\\6106d2f5-6b8e-4c5b-b1b2-a3f712726090_ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png"
     },
     {
       "Identity": "C:\\Users\\Burhan\\source\\repos\\Nest\\Nest\\wwwroot\\client\\assets\\categoryIcons\\ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png",

@@ -29680,6 +29680,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\admin\vendor\jquery\jquery.slim.min.map))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\client\assets\categoryIcons\6106d2f5-6b8e-4c5b-b1b2-a3f712726090_ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>Nest</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Nest</BasePath>
+      <RelativePath>client/assets/categoryIcons/6106d2f5-6b8e-4c5b-b1b2-a3f712726090_ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\client\assets\categoryIcons\6106d2f5-6b8e-4c5b-b1b2-a3f712726090_ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\client\assets\categoryIcons\ad72cd18-3a85-41f1-8781-a0427f950bee_pngegg.png))">
       <SourceType>Package</SourceType>
       <SourceId>Nest</SourceId>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Nest.Areas.Admin.Controllers
+namespace Nest.Area.Admin.Controllers
 {
     [Area("Admin")]
     public class DashboardController : Controller

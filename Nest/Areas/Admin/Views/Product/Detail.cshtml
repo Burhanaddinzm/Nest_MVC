@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Product Detail";
+    int count = 1;
+}
+
+@model Product
+
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center flex-column">
+        <span style="border-bottom:1px solid #000; font-weight:900;margin:16px 0;">Product Name</span><h2>@Model.Name</h2>
+        <span style="border-bottom:1px solid #000; font-weight:900;margin:16px 0;">Description</span><p>@Model.Description</p>
+        <span style="border-bottom:1px solid #000; font-weight:900;margin:16px 0;">Vendor</span><p>@Model.Vendor.Name</p>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Stock Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var size in Model.ProductSizes)
+                {
+                    <tr>
+                        <td>@(count++)</td>
+                        <td>@size.Size.Name</td>
+                        <td>@size.Count</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div style="display:flex; gap:8px;padding:20px 0;">
+            @foreach (var image in Model.Images)
+            {
+                <div>
+                    <img style="width:200px;" src="~/client/assets/imgs/products/@image.Url" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

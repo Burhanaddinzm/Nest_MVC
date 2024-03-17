@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Product";
+}
+@model Product
+
+<form asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name</label>
+        <input type="text" asp-for="Name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Description</label>
+        <input asp-for="Description" class="form-control" id="exampleInputPassword1">
+        <span asp-validation-for="Description"></span>
+    </div>  
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Sell Price</label>
+        <input asp-for="SellPrice" class="form-control" id="exampleInputPassword1">
+        <span asp-validation-for="SellPrice"></span>
+    </div>    
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Discount Price</label>
+        <input asp-for="DiscountPrice" class="form-control" id="exampleInputPassword1">
+        <span asp-validation-for="DiscountPrice"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Rating</label>
+        <input asp-for="Rating" class="form-control" id="exampleInputPassword1">
+        <span asp-validation-for="Rating"></span>
+    </div>   
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Files</label>
+        <input asp-for="Files" class="form-control" id="exampleInputPassword1">
+        <span asp-validation-for="Files"></span>
+    </div>  
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a asp-controller="Product" asp-action="Index" class="btn btn-secondary mx-2">Back to list</a>
+</form>
