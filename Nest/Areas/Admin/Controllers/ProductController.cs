@@ -123,7 +123,7 @@ namespace Nest.Area.Admin.Controllers
                 return View(product);
             }
 
-            var hoverFileName = await product.MainFile.SaveFileAsync(_env.WebRootPath, "client", "assets", "imgs/products");
+            var hoverFileName = await product.HoverFile.SaveFileAsync(_env.WebRootPath, "client", "assets", "imgs/products");
 
             product.Images.Add(new ProductImage
             {
