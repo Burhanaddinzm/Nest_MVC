@@ -37,55 +37,116 @@ namespace Nest.Area.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Product product)
         {
-            if (!ModelState.IsValid) return View(product);
+            ViewBag.Categories = await _context.Categories.ToListAsync();
+            ViewBag.Vendor = await _context.Vendors.ToListAsync();
+            //if (!ModelState.IsValid) return View(product);
 
             product.Images = new List<ProductImage>();
-            var additionalProductImage = new ProductImage();
 
             if (product.Files != null)
             {
                 foreach (var file in product.Files)
                 {
+                    if (!file.CheckFileSize(2))
+                    {
+                        ModelState.AddModelError("", "File size can't exceed 2 MB!");
+                        return View(product);
+                    }
+
+                    if (!file.CheckFileType("image"))
+                    {
+                        ModelState.AddModelError("", "File type is invalid!");
+                        return View(product);
+                    }
+
                     var uniqueFileName = await file.SaveFileAsync(_env.WebRootPath, "client", "assets", "imgs/products");
 
-                    additionalProductImage.Url = uniqueFileName;
-                    additionalProductImage.IsMain = false;
-                    additionalProductImage.IsHover = false;
-
+                    product.Images.Add(new ProductImage
+                    {
+                        Url = uniqueFileName,
+                        IsHover = false,
+                        IsMain = false,
+                        Product = new Product
+                        {
+                            Name = product.Name,
+                            Description = product.Description,
+                            SellPrice = product.SellPrice,
+                            DiscountPrice = product.DiscountPrice,
+                            Rating = product.Rating,
+                            CategoryId = product.CategoryId,
+                            VendorId = product.VendorId,
+                        }
+                    });
                 }
+            }
+
+            if (!product.MainFile.CheckFileSize(2))
+            {
+                ModelState.AddModelError("", "File size can't exceed 2 MB!");
+                return View(product);
+            }
+
+            if (!product.MainFile.CheckFileType("image"))
+            {
+                ModelState.AddModelError("", "File type is invalid!");
+                return View(product);
             }
 
             var mainFileName = await product.MainFile.SaveFileAsync(_env.WebRootPath, "client", "assets", "imgs/products");
 
-            var mainProductImage = new ProductImage
+            product.Images.Add(new ProductImage
             {
                 Url = mainFileName,
+                IsHover = false,
                 IsMain = true,
-                IsHover = false
-            };
+                Product = new Product
+                {
+                    Name = product.Name,
+                    Description = product.Description,
+                    SellPrice = product.SellPrice,
+                    DiscountPrice = product.DiscountPrice,
+                    Rating = product.Rating,
+                    CategoryId = product.CategoryId,
+                    VendorId = product.VendorId,
+                }
+            });
 
+            if (!product.HoverFile.CheckFileSize(2))
+            {
+                ModelState.AddModelError("", "File size can't exceed 2 MB!");
+                return View(product);
+            }
+
+            if (!product.HoverFile.CheckFileType("image"))
+            {
+                ModelState.AddModelError("", "File type is invalid!");
+                return View(product);
+            }
 
             var hoverFileName = await product.MainFile.SaveFileAsync(_env.WebRootPath, "client", "assets", "imgs/products");
 
-            var hoverProductImage = new ProductImage
+            product.Images.Add(new ProductImage
             {
                 Url = hoverFileName,
+                IsHover = true,
                 IsMain = false,
-                IsHover = true
-            };
+                Product = new Product
+                {
+                    Name = product.Name,
+                    Description = product.Description,
+                    SellPrice = product.SellPrice,
+                    DiscountPrice = product.DiscountPrice,
+                    Rating = product.Rating,
+                    CategoryId = product.CategoryId,
+                    VendorId = product.VendorId,
+                }
+            });
 
 
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
 
-            additionalProductImage.ProductId = product.Id;
-            mainProductImage.ProductId = product.Id;
-            hoverProductImage.ProductId = product.Id;
-
-            await _context.ProductImages.AddRangeAsync(product.Images);
-            await _context.SaveChangesAsync();
-
-            return View();
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Detail(int? id)

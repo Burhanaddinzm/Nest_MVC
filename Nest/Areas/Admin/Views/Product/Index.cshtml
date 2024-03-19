@@ -20,6 +20,7 @@
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 403px;">Image</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 403px;">Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 403px;">Description</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 403px;">Rating</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 403px;">Sell Price</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 403px;">Discount Price</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 403px;">Category</th>
@@ -31,14 +32,15 @@
                                     @foreach (var product in Model)
                                     {
                                         <tr>
-                                            <td><img width="100" src="~/client/assets/imgs/products/@product.Images.FirstOrDefault(m=> m.IsMain).Url" /></td>
+                                            <td><img width="100" src="~/client/assets/imgs/products/@product.Images.FirstOrDefault(m => m.IsMain).Url" /></td>
                                             <td>@product.Name</td>
                                             <td>@product.Description</td>
+                                            <td>@product.Rating</td>
                                             <td>@product.SellPrice$</td>
                                             <td>@product.DiscountPrice$</td>
                                             <td>@product.Category.Name</td>
                                             <td>@product.Vendor.Name</td>
-                                            <td style="border:none;display:flex;gap:10px;align-items:center;justify-content:center;">
+                                            <td style="border:none; border-top:1px solid #e3e6f0;margin-top:-1px;display:flex;gap:10px;align-items:center;justify-content:center;">
                                                 <a class="btn btn-primary" asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id" asp-area="Admin">Detail</a>
                                                 <a class="btn btn-warning" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" asp-area="Admin">Edit</a>
                                                 <a class="btn btn-danger" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" asp-area="Admin">Delete</a>

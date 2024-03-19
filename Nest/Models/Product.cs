@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nest.Models
 {
@@ -7,6 +8,7 @@ namespace Nest.Models
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
+        [Range(0.0, 5.0)]
         public double? Rating { get; set; }
         public decimal SellPrice { get; set; }
         public decimal? DiscountPrice { get; set; }

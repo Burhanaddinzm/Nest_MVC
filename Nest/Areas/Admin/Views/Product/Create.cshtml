@@ -3,7 +3,7 @@
 }
 @model Product
 
-<form asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
+<form asp-controller="Product" asp-action="Create" asp-area="Admin" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
         <input type="text" asp-for="Name" class="form-control" id="name" aria-describedby="emailHelp">
@@ -46,19 +46,18 @@
     </div>
     <div class="mb-3">
         <label for="cat" class="form-label">Category</label>
-        <select id="cat" class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories,nameof(Category.Id),nameof(Category.Name)))">
+        <select class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories,nameof(Category.Id),nameof(Category.Name)))">
             <option selected>Select category</option>
         </select>
         <span asp-validation-for="CategoryId"></span>
     </div>
     <div class="mb-3">
         <label for="vendor" class="form-label">Vendor</label>
-        <select id="vendor" class="form-control" asp-for="VendorId" asp-items="@(new SelectList(ViewBag.Vendor,nameof(Category.Id),nameof(Category.Name)))">
+        <select class="form-control" asp-for="VendorId" asp-items="@(new SelectList(ViewBag.Vendor,nameof(Category.Id),nameof(Category.Name)))">
             <option selected>Select vendor</option>
         </select>
         <span asp-validation-for="VendorId"></span>
     </div>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <a asp-controller="Product" asp-action="Index" class="btn btn-secondary mx-2">Back to list</a>
 </form>
