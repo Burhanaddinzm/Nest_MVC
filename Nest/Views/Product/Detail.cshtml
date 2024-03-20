@@ -74,14 +74,16 @@
                                             <p class="font-lg">@Model.Product.Description</p>
                                         </div>
                                         <div class="attr-detail attr-size mb-30">
-                                            <strong class="mr-10">Size / Weight: </strong>
-                                            <ul class="list-filter size-filter font-small">
-                                                <li><a href="#">50g</a></li>
-                                                <li class="active"><a href="#">60g</a></li>
-                                                <li><a href="#">80g</a></li>
-                                                <li><a href="#">100g</a></li>
-                                                <li><a href="#">150g</a></li>
-                                            </ul>
+                                            @if (Model.Product.ProductSizes.Any())
+                                            {
+                                                <strong class="mr-10">Size / Weight: </strong>
+                                                <ul class="list-filter size-filter font-small">
+                                                    @foreach (var productSize in Model.Product.ProductSizes)
+                                                    {
+                                                        <li><a href="#">@productSize.Size.Name</a></li>
+                                                    }
+                                                </ul>
+                                            }
                                         </div>
                                         <div class="detail-extralink mb-50">
                                             <div class="detail-qty border radius">
@@ -104,7 +106,7 @@
                                             <ul class="float-start">
                                                 <li class="mb-5">SKU: <a href="#">FWM15VKT</a></li>
                                                 <li class="mb-5">Tags: <a href="#" rel="tag">Snack</a>, <a href="#" rel="tag">Organic</a>, <a href="#" rel="tag">Brown</a></li>
-                                                <li>Stock:<span class="in-stock text-brand ml-5">8 Items In Stock</span></li>
+                                                <li>Stock:<span class="in-stock text-brand ml-5">@(Model.Product.ProductSizes.Sum(x => x.Count)) Items In Stock</span></li>
                                             </ul>
                                         </div>
                                     </div>

@@ -60,23 +60,9 @@ namespace Nest.Area.Admin.Controllers
                     }
 
                     var uniqueFileName = await file.SaveFileAsync(_env.WebRootPath, "client", "assets", "imgs/products");
+                    var productCreate = CreateProduct(uniqueFileName, false, false, product);
 
-                    product.Images.Add(new ProductImage
-                    {
-                        Url = uniqueFileName,
-                        IsHover = false,
-                        IsMain = false,
-                        Product = new Product
-                        {
-                            Name = product.Name,
-                            Description = product.Description,
-                            SellPrice = product.SellPrice,
-                            DiscountPrice = product.DiscountPrice,
-                            Rating = product.Rating,
-                            CategoryId = product.CategoryId,
-                            VendorId = product.VendorId,
-                        }
-                    });
+                    product.Images.Add(productCreate);
                 }
             }
 
@@ -93,23 +79,9 @@ namespace Nest.Area.Admin.Controllers
             }
 
             var mainFileName = await product.MainFile.SaveFileAsync(_env.WebRootPath, "client", "assets", "imgs/products");
+            var mainProductCreate = CreateProduct(mainFileName, true, false, product);
 
-            product.Images.Add(new ProductImage
-            {
-                Url = mainFileName,
-                IsHover = false,
-                IsMain = true,
-                Product = new Product
-                {
-                    Name = product.Name,
-                    Description = product.Description,
-                    SellPrice = product.SellPrice,
-                    DiscountPrice = product.DiscountPrice,
-                    Rating = product.Rating,
-                    CategoryId = product.CategoryId,
-                    VendorId = product.VendorId,
-                }
-            });
+            product.Images.Add(mainProductCreate);
 
             if (!product.HoverFile.CheckFileSize(2))
             {
@@ -124,29 +96,35 @@ namespace Nest.Area.Admin.Controllers
             }
 
             var hoverFileName = await product.HoverFile.SaveFileAsync(_env.WebRootPath, "client", "assets", "imgs/products");
+            var hoverProductCreate = CreateProduct(hoverFileName, false, true, product);
 
-            product.Images.Add(new ProductImage
-            {
-                Url = hoverFileName,
-                IsHover = true,
-                IsMain = false,
-                Product = new Product
-                {
-                    Name = product.Name,
-                    Description = product.Description,
-                    SellPrice = product.SellPrice,
-                    DiscountPrice = product.DiscountPrice,
-                    Rating = product.Rating,
-                    CategoryId = product.CategoryId,
-                    VendorId = product.VendorId,
-                }
-            });
+            product.Images.Add(hoverProductCreate);
 
 
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
+
+            ProductImage CreateProduct(string url, bool isMain, bool isHover, Product product)
+            {
+                return new ProductImage
+                {
+                    Url = url,
+                    IsHover = isHover,
+                    IsMain = isMain,
+                    Product = new Product
+                    {
+                        Name = product.Name,
+                        Description = product.Description,
+                        SellPrice = product.SellPrice,
+                        DiscountPrice = product.DiscountPrice,
+                        Rating = product.Rating,
+                        CategoryId = product.CategoryId,
+                        VendorId = product.VendorId,
+                    }
+                };
+            }
         }
 
         public async Task<IActionResult> Detail(int? id)

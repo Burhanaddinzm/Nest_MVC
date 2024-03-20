@@ -17,9 +17,12 @@ namespace Nest.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _context.Products.Include(m => m.Category)
-                .Include(m => m.Vendor).Include(m => m.Images)
-                .OrderByDescending(m => m.Id).Take(20)
+            var products = await _context.Products
+                .Include(m => m.Category)
+                .Include(m => m.Vendor)
+                .Include(m => m.Images)
+                .OrderByDescending(m => m.Id)
+                .Take(20)
                 .ToListAsync();
 
             var categories = await _context.Categories.Include(m => m.Products).ToListAsync();
@@ -35,15 +38,19 @@ namespace Nest.Controllers
 
         public async Task<IActionResult> Detail(int? id)
         {
-            if (id == null) NotFound();
+            if (id == null) return NotFound();
 
-            var product = await _context.Products.Include(m => m.Category)
-               .Include(m => m.Vendor).Include(m => m.Images)
+            var product = await _context.Products
+                .Include(m => m.Category)
+               .Include(m => m.Vendor)
+               .Include(m => m.Images)
+               .Include("ProductSizes.Size")
                .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (product == null) NotFound();
+            if (product == null) return NotFound();
 
-            var categories = await _context.Categories.Include(m => m.Products)
+            var categories = await _context.Categories
+                .Include(m => m.Products)
                 .ToListAsync();
 
             ProductVM prodcutVM = new ProductVM()
