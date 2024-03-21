@@ -8,5 +8,11 @@
         public int SizeId { get; set; }
         public Size Size { get; set; }
         public int Count { get; set; }
+
+        public ProductSize()
+        {
+            Product = new Product();    
+            Size = new Size();    
+        }
     }
 }

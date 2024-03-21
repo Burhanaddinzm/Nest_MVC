@@ -101,6 +101,21 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePSize"
+                   aria-expanded="true" aria-controls="collapsePSize">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Product Sizes</span>
+                </a>
+                <div id="collapsePSize" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" asp-controller="ProductSize" asp-action="Index">ProductSize List</a>
+                        <a class="collapse-item" asp-controller="ProductSize" asp-action="Create">ProductSize Create</a>
+                    </div>
+                </div>
+            </li>
+
 
         </ul>
         <!-- End of Sidebar -->
