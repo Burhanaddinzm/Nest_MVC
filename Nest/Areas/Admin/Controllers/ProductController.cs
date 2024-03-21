@@ -37,6 +37,12 @@ namespace Nest.Area.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Product product)
         {
+            if (_context.Products.Any(x => x.Name == product.Name))
+            {
+                ModelState.AddModelError("", "Product already exists");
+                return View(product);
+            }
+
             ViewBag.Categories = await _context.Categories.ToListAsync();
             ViewBag.Vendor = await _context.Vendors.ToListAsync();
             //if (!ModelState.IsValid) return View(product);

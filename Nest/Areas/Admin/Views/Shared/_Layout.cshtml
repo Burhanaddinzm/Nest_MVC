@@ -86,6 +86,21 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSize"
+                   aria-expanded="true" aria-controls="collapseSize">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Sizes</span>
+                </a>
+                <div id="collapseSize" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" asp-controller="Size" asp-action="Index">Size List</a>
+                        <a class="collapse-item" asp-controller="Size" asp-action="Create">Size Create</a>
+                    </div>
+                </div>
+            </li>
+
 
         </ul>
         <!-- End of Sidebar -->
