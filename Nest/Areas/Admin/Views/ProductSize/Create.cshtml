@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Product Size";
+}
+@model ProductSizeVM
+
+<form asp-controller="ProductSize" asp-action="Create" asp-area="Admin" method="post">
+    <div class="mb-3">
+        <label for="cat" class="form-label">Size</label>
+        <select class="form-control" asp-for="SizeId" asp-items="@(new SelectList(ViewBag.Sizes,nameof(Size.Id),nameof(Size.Name)))">
+            <option selected>Select Size</option>
+        </select>
+        <span asp-validation-for="SizeId"></span>
+    </div>
+    <div class="mb-3">
+        <label for="vendor" class="form-label">Product</label>
+        <select class="form-control" asp-for="ProductId" asp-items="@(new SelectList(ViewBag.Products,nameof(Product.Id),nameof(Product.Name)))">
+            <option selected>Select Product</option>
+        </select>
+        <span asp-validation-for="ProductId"></span>
+    </div>
+    <div class="mb-3">
+        <label for="files" class="form-label">Count</label>
+        <input asp-for="Count" class="form-control" id="files">
+        <span asp-validation-for="Count"></span>
+    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

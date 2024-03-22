@@ -1,4 +1,6 @@
-﻿namespace Nest.Models
+﻿using Nest.Areas.Admin.ViewModels;
+
+namespace Nest.Models
 {
     public class ProductSize
     {
@@ -9,10 +11,14 @@
         public Size Size { get; set; }
         public int Count { get; set; }
 
-        public ProductSize()
+        public static explicit operator ProductSize(ProductSizeVM productSizeVM)
         {
-            Product = new Product();    
-            Size = new Size();    
+            return new ProductSize
+            {
+                ProductId = productSizeVM.ProductId,
+                SizeId = productSizeVM.SizeId,
+                Count = productSizeVM.Count
+            };
         }
     }
 }
