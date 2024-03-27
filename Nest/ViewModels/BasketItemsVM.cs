@@ -7,6 +7,5 @@
         public decimal Price { get; set; }
         public int Count { get; set; }
         public string Image { get; set; } = null!;
-        public int ProductId { get; set; }
     }
 }

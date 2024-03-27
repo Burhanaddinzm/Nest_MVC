@@ -22,7 +22,9 @@ namespace Nest.ViewComponents
 
             foreach (var item in basketVM)
             {
-                var product = await _context.Products.FirstOrDefaultAsync(x => x.Id == item.ProductId);
+                var product =
+                    await _context.Products.Include(x => x.Images).FirstOrDefaultAsync(x => x.Id == item.ProductId);
+
                 basketItemsVM.Add(new BasketItemsVM
                 {
                     Count = item.Count,
@@ -30,7 +32,6 @@ namespace Nest.ViewComponents
                     Name = product.Name,
                     Image = product.Images.FirstOrDefault(m => m.IsMain).Url,
                     Price = product.SellPrice,
-                    ProductId = item.ProductId
                 });
             }
 
