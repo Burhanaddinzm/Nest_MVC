@@ -14,17 +14,17 @@ namespace Nest.ViewComponents
             _context = context;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int? categoryId)
         {
-            var products = await _context.Products
+            var products = _context.Products
                .Include(m => m.Category)
                .Include(m => m.Vendor)
                .Include(m => m.Images)
                .OrderByDescending(m => m.Id)
-               .Take(20)
-               .ToListAsync();
+               .Take(20);
 
-            return View(products);
+            return categoryId == null ? View(await products.ToListAsync())
+                              : View(await products.Where(x => x.CategoryId == categoryId).ToListAsync());
         }
     }
 }

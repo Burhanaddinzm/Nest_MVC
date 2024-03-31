@@ -9,5 +9,9 @@ namespace Nest.Controllers
         {
             return View();
         }
+        public IActionResult ProductCategoryFilter(int? id)
+        {
+            return ViewComponent("Product", new { categoryId = id });
+        }
     }
 }
